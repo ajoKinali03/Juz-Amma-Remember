@@ -1,49 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <script src="main.js"></script>
-</head>
-<body>
-  <header>
-    <h1>Mahapa</h1>
-    <ol>
-      <li><a href="#">info</a></li>
-      <li><a href="#">tutorial</a></li>
-      <li><a href="#">privasi & policy</a></li>
-    </ol>
-  </header>
-  <container>
-    <section class="qution">
-      <h2>Apa Jawaban Mu?</h2>
-      <div>
-        <p><i>item rolling</i></p>
-      </div>
-    </section>
-    <section class="answer">
-      <button type="submit">JAWAB</button>
-      <div id="list-jawaban">
-        <ol>
-          <li>
-            <input type="checkbox" name="jawab" id="1">
-            <p>ini jawaban 1</p>
-          </li>
-          <li>
-            <input type="checkbox" name="jawab" id="2">
-            <p>ini jawaban 2</p>
-          </li>
-          <li>
-            <input type="checkbox" name="jawab" id="3">
-            <p>ini jawaban 3</p>
-          </li>
-        </ol>
-      </div>
-    </section>
-  </container>
-  <footer>
-
-  </footer>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p id="global-value" style="display: none;">all</p>
+    <header>
+      <h1>Mahapa</h1>
+      <ul>
+        <li><a href="#">Tutorial</a></li>
+        <li id="btn-surah"><button type="button" name="surah">Surah</button></li>
+      </ul>
+      <select id="select-surah" multiple size="7" style="display: none" name="surah">
+      </select>
+    </header>
+    <container>
+      <section class="qution">
+        <h2>Apa Jawaban Mu?</h2>
+        <div>
+          <p><i>item rolling</i></p>
+        </div>
+      </section>
+      <section class="answer">
+        <button type="button">Jawab</button>
+        <button type="button">Start</button>
+        <div id="list-jawaban">
+          <ol>
+            <input type="checkbox" name="jawab" id="1" />
+            <li>
+              <p>ini jawaban 1</p>
+            </li>
+            <li>
+              <input type="checkbox" name="jawab" id="2" />
+              <p>ini jawaban 2</p>
+            </li>
+            <li>
+              <input type="checkbox" name="jawab" id="3" />
+              <p>ini jawaban 3</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+    </container>
+    <footer></footer>
+    <script src="main.js"></script>
+  </body>
 </html>
