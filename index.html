@@ -6,26 +6,33 @@
     <title>Document</title>
   </head>
   <body>
-    <p id="global-value" style="display: none;">all</p>
+    <p id="global-value" style="display: none">all</p>
     <header>
       <h1>Mahapa</h1>
       <ul>
         <li><a href="#">Tutorial</a></li>
-        <li id="btn-surah"><button type="button" name="surah">Surah</button></li>
+        <li id="btn-surah">
+          <button type="button" name="surah">Surah</button>
+        </li>
       </ul>
-      <select id="select-surah" multiple size="7" style="display: none" name="surah">
-      </select>
+      <select
+        id="select-surah"
+        multiple
+        size="7"
+        style="display: none"
+        name="surah"
+      ></select>
     </header>
     <container>
-      <section class="qution">
-        <h2>Apa Jawaban Mu?</h2>
+      <section class="question">
         <div>
-          <p><i>item rolling</i></p>
+          <p id="question">Selamat Datang 😆</p>
         </div>
       </section>
       <section class="answer">
-        <button type="button">Jawab</button>
-        <button type="button">Start</button>
+        <button type="button" id="jawab">Jawab</button>
+        <button type="button" id="start">Start</button>
+        <h2>Apa Jawaban Mu?</h2>
         <div id="list-jawaban">
           <ol>
             <input type="checkbox" name="jawab" id="1" />
