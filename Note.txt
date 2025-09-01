@@ -1,0 +1,16 @@
+STRUKTUR GAME
+
+Halaman Utama -----> Totorial > membuka halaman baru di tab yang sama untuk menjelaskan tutorial
+            |_ ---> Surah ==> All
+            |            |_==> surah n
+            |
+            |_----> Pertanyaan > menampilkan soal yang akan di jawab dan info lainnya
+            |_----> Jawab
+            |_----> Start
+            |_----> Pilihan Ganda
+
+SISTEM GAME/CARA KERJA
+1. Pertama pemain dapat langsung memulai gamen denga menekan start dan akan menampilkan ayat random dengan clue tentang nama surat atau rentang no ayat yang sedang ditampilkan.
+2. Apabila pemain tidak memahami cara mainnya, pemain dapat menekan tombol tutorial untuk mengetahui cara dan fitur dari permainan.
+3. Pemain dapat memilih surat tertentu yang ingin ia mainkan pada tombol surah apabila ia kesulitan denga langsung keseluruhan surat.
+4. Pemain dapat memilih opsi jawabn yang ia rasa betul dengan mencentang lingkaran pada pangkal teks dan menekan "jawab" apabila jawabnnya merasa sudah benar.
