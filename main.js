@@ -10,7 +10,13 @@ const loadData = async function (file) {
 
 let globalValue = document.getElementById("global-value");
 
-const gameType = ["Apa Ayat Sesudahnya?", "Apa Ayat Sebelumnya?", "Tebak Nomor Ayat ini?", "Tebak Surat Dari Ayat ini?", "Apa Terjemahannya?"];
+const gameType = [
+  "Apa Ayat Sesudahnya?",
+  "Apa Ayat Sebelumnya?",
+  "Tebak Nomor Ayat ini?",
+  "Tebak Surat Dari Ayat ini?",
+  "Apa Terjemahannya?",
+];
 
 //menampilkan data surah
 loadData("./surah.json").then((surah) => {
@@ -61,8 +67,11 @@ function randomData(countData) {
 if (globalValue.innerHTML === "all") {
   startBtn.addEventListener("click", () => {
     loadData(`./surah/surah_${randomData(fileNameSurah)}.json`).then((res) => {
-      let nameSurah = Array.from({ length: res.count - 1 + 1 }, (_, i) => i + 1);
-      console.log(randomData(nameSurah));
+      let nameSurah = Array.from(
+        { length: res.count - 0 + 1 },
+        (_, i) => i + 0
+      );
+      ques.innerHTML = eval("res.verse.verse_" + randomData(nameSurah));
     });
   });
 } else {
