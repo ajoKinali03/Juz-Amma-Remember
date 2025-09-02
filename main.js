@@ -23,10 +23,10 @@ loadData("./surah.json").then((surah) => {
   let btnSurah = document.getElementById("btn-surah");
   let selectSurah = document.getElementById("select-surah");
 
-  for (item of surah) {
+  for (let i = 77; i <= 113; i++) {
     let option = document.createElement("option");
-    option.value = item.title;
-    option.textContent = item.title;
+    option.value = surah[i].title;
+    option.textContent = surah[i].title;
     selectSurah.appendChild(option);
   }
 
@@ -50,6 +50,7 @@ loadData("./surah.json").then((surah) => {
 });
 
 let ques = document.getElementById("question");
+let quest = document.getElementById("quest");
 let startBtn = document.getElementById("start");
 
 let fileNameSurah = Array.from({ length: 114 - 78 + 1 }, (_, i) => i + 78);
@@ -63,19 +64,26 @@ function randomData(countData) {
   countData.splice(randomIndex, 1);
   return value;
 }
-
-if (globalValue.innerHTML === "all") {
-  startBtn.addEventListener("click", () => {
+startBtn.addEventListener("click", () => {
+  if (globalValue.innerHTML === "all") {
     loadData(`./surah/surah_${randomData(fileNameSurah)}.json`).then((res) => {
       let nameSurah = Array.from(
-        { length: res.count - 0 + 1 },
-        (_, i) => i + 0
+        { length: res.count - 1 + 1 },
+        (_, i) => i + 1
+      );
+      console.log(res.name);
+      console.log("all");
+      ques.innerHTML = eval("res.verse.verse_" + randomData(nameSurah));
+    });
+  } else {
+    let dataSurah = JSON.parse(globalValue.innerHTML);
+    let idxSurah = parseInt(dataSurah.index)
+    loadData(`./surah/surah_${idxSurah}.json`).then((res) => {
+      let nameSurah = Array.from(
+        { length: res.count - 1 + 1 },
+        (_, i) => i + 1
       );
       ques.innerHTML = eval("res.verse.verse_" + randomData(nameSurah));
     });
-  });
-} else {
-  startBtn.addEventListener("click", () => {
-    ques.innerHTML = globalValue.innerHTML;
-  });
-}
+  }
+});
