@@ -27,12 +27,12 @@ function randomData(max, min, selain, array) {
   const randomIndex = Math.floor(Math.random() * countData.length);
   const value = countData[randomIndex];
   countData.splice(randomIndex, 1);
-  if(array){
-    countData.push(value)
+  if (array) {
+    countData.unshift(value);
     return countData;
-  }else{
+  } else {
     return value;
-  };
+  }
 }
 
 // let arrTst = [1, 3, 4, 1];
@@ -40,6 +40,19 @@ function randomData(max, min, selain, array) {
 // for(let i = 1; i <= 5; i++){
 //   randomData(5, 1, arrTst)
 // };
+//menyiapkan jawaban dan merandomkannya
+function answerData(max, min, specialArr) {
+  let arr = [];
+  while (true) {
+    let fileLoc = randomData(max, min, specialArr);
+    arr.push(fileLoc);
+    arr = [...new Set(arr)];
+    if (arr.length == 3) {
+      break;
+    }
+  }
+  return arr;
+}
 
 // array pertanyaan
 let gameType = [
@@ -131,24 +144,13 @@ startBtn.addEventListener("click", () => {
   }
 });
 
-
 //menyiapkan pilihan jawaban
 let loading = document.getElementById("loading");
 startBtn.addEventListener("click", () => {
   loading.style.display = "block"; //menampilkan teks loading
   setTimeout(() => {
     let data = JSON.parse(inisiator.innerHTML);
-    let arrFileLoc = [];
-    //mengambil 3 surah yang berbeda
-    while (true) {
-      let fileLoc = randomData(114, 78, [parseInt(data.surahIdx)]);
-      arrFileLoc.push(fileLoc);
-      arrFileLoc = [...new Set(arrFileLoc)];
-      if (arrFileLoc.length == 3) {
-        break;
-      }
-    }
-
+    let arrFileLoc = answerData(114, 78, [parseInt(data.surahIdx)]); //mengambil data random dengan pengecualian
     // gameType: "Apa Ayat Sesudahnya?",
     // totalAyat: 6,
     // ayatVerse: 3,
@@ -180,7 +182,16 @@ startBtn.addEventListener("click", () => {
             showAnswer(arrAnswer);
           }
         }
-        
+        if (data.gameType === "Tebak Nomor Ayat ini?") {//perbaiki karena ada kemungkinan angka yang sama akan muncul
+          if (arrAnswer.length == 0) {
+            arrAnswer.push(["Ayat ke-" + data.ayatVerse, true]);
+          } else {
+            arrAnswer.push("Ayat ke-" + randomData(res.count, 1));
+          }
+          if (arrAnswer.length == 3) {
+            showAnswer(arrAnswer);
+          }
+        }
       });
     }
 
@@ -189,14 +200,15 @@ startBtn.addEventListener("click", () => {
   }, 2000);
 });
 
-
-let indexRandom = randomData(3, 1, false, true);
 function showAnswer(arr) {
+  let indexRandom = randomData(3, 1, false, true);
   arr.forEach((e, i) => {
-    if(typeof e == "object"){
-      document.getElementById(`${indexRandom[i]}`).innerHTML = e[0]; 
-    }else{
-      document.getElementById(`${indexRandom[i]}`).innerHTML = e; 
-    };
+    if (typeof e == "object") {
+      document.getElementById(`${indexRandom[i]}`).innerHTML = e[0];
+    } else {
+      if (i != indexRandom) {
+        document.getElementById(`${indexRandom[i]}`).innerHTML = e;
+      }
+    }
   });
 }
