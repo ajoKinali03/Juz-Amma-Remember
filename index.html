@@ -7,6 +7,7 @@
   </head>
   <body>
     <p id="global-value" style="display: none">all</p>
+    <p id="inisiator"></p>
     <header>
       <h1>Mahapa</h1>
       <ul>
@@ -34,7 +35,8 @@
         <button type="button" id="jawab">Jawab</button>
         <button type="button" id="start">Start</button>
         <h2>Apa Jawaban Mu?</h2>
-        <div id="list-jawaban">
+        <p id="loading" style="display: none;">LOADING...</p>
+        <div id="list-jawaban" style="display: none;">
           <ol>
             <li>
               <p name="jawab1" id="1"></p>
@@ -48,10 +50,10 @@
               <p name="jawab3" id="3"></p>
               <input type="checkbox" name="jawab3"/>
             </li>
-            <li>
+            <!-- <li>
               <p name="jawab4" id="4"></p>
               <input type="checkbox" name="jawab4"/>
-            </li>
+            </li> -->
           </ol>
         </div>
       </section>
