@@ -59,9 +59,29 @@ let gameType = [
   "Apa Ayat Sesudahnya?",
   "Apa Ayat Sebelumnya?",
   "Tebak Nomor Ayat ini?",
-  "Tebak Surat Dari Ayat ini?",
+  "Tebak Nama Surat Dari Ayat ini?",
   "Apa Terjemahannya?",
 ];
+
+function tipeQuest(quest) {
+  let tipeObj = {
+    ayat: ["Sesudah", "Sebelum"],
+    nomor: "Nomor",
+    nama: "Nama",
+    terj: "Terjemahannya",
+  };
+  for (key in tipeObj) {
+    if (typeof tipeObj[key] == "object") {
+      if (quest.includes(tipeObj[key][0]) || quest.includes(tipeObj[key][1])) {
+        return key;
+      }
+    } else {
+      if (quest.includes(tipeObj[key])) {
+        return key;
+      }
+    }
+  }
+}
 
 //menampilkan data surah
 loadData("./surah.json").then((surah) => {
@@ -101,7 +121,8 @@ let startBtn = document.getElementById("start");
 startBtn.addEventListener("click", () => {
   if (globalValue.innerHTML === "all") {
     let curentGameType = gameType[randomData(gameType.length - 1, 0)];
-    loadData(`./surah/surah_${randomData(114, 78)}.json`).then((res) => {
+    let idxFile = randomData(114, 78);
+    loadData(`./surah/surah_${idxFile}.json`).then((res) => {
       let verseId = randomData(res.count, 1);
       if (res.count === verseId) {
         gameType = gameType.filter((e) => e != "Apa Ayat Sesudahnya?");
@@ -115,6 +136,8 @@ startBtn.addEventListener("click", () => {
           surahIdx: res.index,
           curentAyat: eval("res.verse.verse_" + verseId),
           beforeAyat: eval("res.verse.verse_" + (verseId - 1)),
+          lastAyat: true,
+          indexArray: 1,
         });
       } else {
         let curentGameType = gameType[randomData(gameType.length - 1, 0)];
@@ -129,6 +152,7 @@ startBtn.addEventListener("click", () => {
           surahIdx: res.index,
           curentAyat: eval("res.verse.verse_" + verseId),
           beforeAyat: eval("res.verse.verse_" + (verseId - 1)),
+          lastAyat: false,
           afterAyat: eval("res.verse.verse_" + (verseId + 1)),
         });
       }
@@ -148,9 +172,14 @@ startBtn.addEventListener("click", () => {
 let loading = document.getElementById("loading");
 startBtn.addEventListener("click", () => {
   loading.style.display = "block"; //menampilkan teks loading
+  document.getElementById("list-jawaban").style.display = "none";
+  startBtn.disabled = true;
+
   setTimeout(() => {
+    // mengambil data yang di simpan pada element html
     let data = JSON.parse(inisiator.innerHTML);
-    let arrFileLoc = answerData(114, 78, [parseInt(data.surahIdx)]); //mengambil data random dengan pengecualian
+    let arrAnswer = []; //kumpulan jawabn dengan maksimal tampungan 3 data
+
     // gameType: "Apa Ayat Sesudahnya?",
     // totalAyat: 6,
     // ayatVerse: 3,
@@ -159,45 +188,97 @@ startBtn.addEventListener("click", () => {
     // curentAyat: "وَلَآ أَنتُمْ عَٰبِدُونَ مَآ أَعْبُدُ",
     // beforeAyat: "لَآ أَعْبُدُ مَا تَعْبُدُونَ",
     // afterAyat: "وَلَآ أَنَا۠ عَابِدٌۭ مَّا عَبَدتُّمْ",
-    let arrAnswer = [];
-    for (idx of arrFileLoc) {
-      loadData(`./surah/surah_${idx}.json`).then((res) => {
-        if (data.gameType === "Apa Ayat Sesudahnya?") {
-          if (arrAnswer.length == 0) {
-            arrAnswer.push([data.afterAyat, true]);
+    if (tipeQuest(data.gameType) === "ayat") {
+      let arrFileLoc = answerData(114, 78, [parseInt(data.surahIdx)]); //mengambil data random dengan pengecualian index file tertentu
+      for (idx of arrFileLoc) {
+        loadData(`./surah/surah_${idx}.json`).then((res) => {
+          if (data.lastAyat) {
+            if (data.gameType === "Apa Ayat Sebelumnya?") {
+              if (arrAnswer.length == 0) {
+                arrAnswer.push([data.beforeAyat, true]);
+              } else {
+                arrAnswer.push(
+                  eval("res.verse.verse_" + randomData(res.count, 1))
+                );
+              }
+              if (arrAnswer.length == 3) {
+                showAnswer(arrAnswer);
+              }
+            }
           } else {
-            arrAnswer.push(eval("res.verse.verse_" + randomData(res.count, 1)));
+            if (data.gameType === "Apa Ayat Sesudahnya?") {
+              if (arrAnswer.length == 0) {
+                arrAnswer.push([data.afterAyat, true]);
+              } else {
+                arrAnswer.push(
+                  eval("res.verse.verse_" + randomData(res.count, 1))
+                );
+              }
+              if (arrAnswer.length == 3) {
+                showAnswer(arrAnswer);
+              }
+            }
+            if (data.gameType === "Apa Ayat Sebelumnya?") {
+              if (arrAnswer.length == 0) {
+                arrAnswer.push([data.beforeAyat, true]);
+              } else {
+                arrAnswer.push(
+                  eval("res.verse.verse_" + randomData(res.count, 1))
+                );
+              }
+              if (arrAnswer.length == 3) {
+                showAnswer(arrAnswer);
+              }
+            }
           }
-          if (arrAnswer.length == 3) {
-            showAnswer(arrAnswer);
-          }
+        });
+      }
+      document.getElementById("list-jawaban").style.display = "block"; //menampilkan pilihan jawabn
+    } else if (tipeQuest(data.gameType) === "nomor") {
+      let arrnNumAyah = answerData(data.totalAyat, 1, [data.ayatVerse]);
+      for (idx of arrnNumAyah) {
+        if (arrAnswer.length == 0) {
+          arrAnswer.push(["Ayat ke-" + data.ayatVerse, true]);
+        } else {
+          arrAnswer.push("Ayat ke-" + idx);
         }
-        if (data.gameType === "Apa Ayat Sebelumnya?") {
-          if (arrAnswer.length == 0) {
-            arrAnswer.push([data.beforeAyat, true]);
-          } else {
-            arrAnswer.push(eval("res.verse.verse_" + randomData(res.count, 1)));
-          }
-          if (arrAnswer.length == 3) {
-            showAnswer(arrAnswer);
-          }
+        if (arrAnswer.length == 3) {
+          showAnswer(arrAnswer);
         }
-        if (data.gameType === "Tebak Nomor Ayat ini?") {//perbaiki karena ada kemungkinan angka yang sama akan muncul
-          if (arrAnswer.length == 0) {
-            arrAnswer.push(["Ayat ke-" + data.ayatVerse, true]);
-          } else {
-            arrAnswer.push("Ayat ke-" + randomData(res.count, 1));
+      }
+      document.getElementById("list-jawaban").style.display = "block"; //menampilkan pilihan jawabn
+    } else if (tipeQuest(data.gameType) === "nama") {
+      loadData("./surah.json").then((res) => {
+        setTimeout(() => {
+          let idxName = res.findIndex(
+            async (e) => await e.title.toUpperCase() == await data.surahName.toUpperCase()
+          );
+          let namaAyt = answerData(114, 78, [idxName]);
+          let arrTakeName = res.filter(async (e) => await e.title);
+          for (idx of namaAyt) {
+            if (arrAnswer.length == 0) {
+              arrAnswer.push([arrTakeName[idxName].title, true]);
+            } else {
+              arrAnswer.push(arrTakeName[idx].title);
+            }
+            if (arrAnswer.length == 3) {
+              showAnswer(arrAnswer);
+            }
           }
-          if (arrAnswer.length == 3) {
-            showAnswer(arrAnswer);
-          }
-        }
-      });
-    }
+        });
+      }, 100);
 
+      document.getElementById("list-jawaban").style.display = "block";
+    } else if (tipeQuest(data.gameType) === "terj") {
+      loadData(`./id/id_translation_${parseInt(data.surahIdx)}.json`).then((res) => {
+        console.log(res)
+      });
+
+      document.getElementById("list-jawaban").style.display = "none";
+    }
+    startBtn.disabled = false;
     loading.style.display = "none"; //menghapus teks loading
-    document.getElementById("list-jawaban").style.display = "block"; //menampilkan pilihan jawabn
-  }, 2000);
+  }, 1000);
 });
 
 function showAnswer(arr) {
