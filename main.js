@@ -137,7 +137,7 @@ startBtn.addEventListener("click", () => {
           curentAyat: eval("res.verse.verse_" + verseId),
           beforeAyat: eval("res.verse.verse_" + (verseId - 1)),
           lastAyat: true,
-          indexArray: 1,
+          indexArray: idxFile - 1,
         });
       } else {
         let curentGameType = gameType[randomData(gameType.length - 1, 0)];
@@ -154,6 +154,7 @@ startBtn.addEventListener("click", () => {
           beforeAyat: eval("res.verse.verse_" + (verseId - 1)),
           lastAyat: false,
           afterAyat: eval("res.verse.verse_" + (verseId + 1)),
+          indexArray: idxFile - 1,
         });
       }
     });
@@ -161,9 +162,44 @@ startBtn.addEventListener("click", () => {
     let dataSurah = JSON.parse(globalValue.innerHTML);
     let idxSurah = parseInt(dataSurah.index);
     loadData(`./surah/surah_${idxSurah}.json`).then((res) => {
-      gameType = gameType.filter((e) => e != "Tebak Surat Dari Ayat ini?");
-      quest.innerHTML = gameType[randomData(gameType.length - 1, 0)];
-      ques.innerHTML = eval("res.verse.verse_" + randomData(res.count, 1));
+      gameType = gameType.filter((e) => e != "Tebak Nama Surat Dari Ayat ini?");
+      let verseId = randomData(res.count, 1);
+      let idxFile = parseInt(res.index);
+      if (res.count === verseId) {
+        gameType = gameType.filter((e) => e != "Apa Ayat Sesudahnya?");
+        let curentGameType = gameType[randomData(gameType.length - 1, 0)];
+        quest.innerHTML = curentGameType;
+        ques.innerHTML = eval("res.verse.verse_" + verseId);
+        inisiator.innerHTML = JSON.stringify({
+          gameType: curentGameType,
+          totalAyat: res.count,
+          ayatVerse: verseId,
+          surahName: res.name,
+          surahIdx: res.index,
+          curentAyat: eval("res.verse.verse_" + verseId),
+          beforeAyat: eval("res.verse.verse_" + (verseId - 1)),
+          lastAyat: true,
+          indexArray: idxFile - 1,
+        });
+      } else {
+        let curentGameType = gameType[randomData(gameType.length - 1, 0)];
+        console.log(gameType);
+        quest.innerHTML = curentGameType;
+        ques.innerHTML = eval("res.verse.verse_" + verseId);
+
+        inisiator.innerHTML = JSON.stringify({
+          gameType: curentGameType,
+          totalAyat: res.count,
+          ayatVerse: verseId,
+          surahName: res.name,
+          surahIdx: res.index,
+          curentAyat: eval("res.verse.verse_" + verseId),
+          beforeAyat: eval("res.verse.verse_" + (verseId - 1)),
+          lastAyat: false,
+          afterAyat: eval("res.verse.verse_" + (verseId + 1)),
+          indexArray: idxFile - 1,
+        });
+      }
     });
   }
 });
@@ -249,17 +285,15 @@ startBtn.addEventListener("click", () => {
       document.getElementById("list-jawaban").style.display = "block"; //menampilkan pilihan jawabn
     } else if (tipeQuest(data.gameType) === "nama") {
       loadData("./surah.json").then((res) => {
-        setTimeout(() => {
-          let idxName = res.findIndex(
-            async (e) => await e.title.toUpperCase() == await data.surahName.toUpperCase()
-          );
+        setTimeout(async () => {
+          let idxName = res[data.indexArray].title;
           let namaAyt = answerData(114, 78, [idxName]);
-          let arrTakeName = res.filter(async (e) => await e.title);
+          let arrTakeName = await Promise.all(res.map((e) => e.title));
           for (idx of namaAyt) {
             if (arrAnswer.length == 0) {
-              arrAnswer.push([arrTakeName[idxName].title, true]);
+              arrAnswer.push([idxName, true]);
             } else {
-              arrAnswer.push(arrTakeName[idx].title);
+              arrAnswer.push(arrTakeName[idx]);
             }
             if (arrAnswer.length == 3) {
               showAnswer(arrAnswer);
@@ -270,11 +304,23 @@ startBtn.addEventListener("click", () => {
 
       document.getElementById("list-jawaban").style.display = "block";
     } else if (tipeQuest(data.gameType) === "terj") {
-      loadData(`./id/id_translation_${parseInt(data.surahIdx)}.json`).then((res) => {
-        console.log(res)
-      });
+      loadData(`./id/id_translation_${parseInt(data.surahIdx)}.json`).then(
+        (res) => {
+          let terjAyt = answerData(data.totalAyat, 1, [data.ayatVerse]);
+          for (idx of terjAyt) {
+            if (arrAnswer.length == 0) {
+              arrAnswer.push([eval("res.verse.verse_" + data.ayatVerse), true]);
+            } else {
+              arrAnswer.push(eval("res.verse.verse_" + idx));
+            }
+            if (arrAnswer.length == 3) {
+              showAnswer(arrAnswer);
+            }
+          }
+        }
+      );
 
-      document.getElementById("list-jawaban").style.display = "none";
+      document.getElementById("list-jawaban").style.display = "block";
     }
     startBtn.disabled = false;
     loading.style.display = "none"; //menghapus teks loading
