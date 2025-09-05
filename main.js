@@ -216,14 +216,6 @@ startBtn.addEventListener("click", () => {
     let data = JSON.parse(inisiator.innerHTML);
     let arrAnswer = []; //kumpulan jawabn dengan maksimal tampungan 3 data
 
-    // gameType: "Apa Ayat Sesudahnya?",
-    // totalAyat: 6,
-    // ayatVerse: 3,
-    // surahName: "al-Kafirun",
-    // surahIdx: "109",
-    // curentAyat: "وَلَآ أَنتُمْ عَٰبِدُونَ مَآ أَعْبُدُ",
-    // beforeAyat: "لَآ أَعْبُدُ مَا تَعْبُدُونَ",
-    // afterAyat: "وَلَآ أَنَا۠ عَابِدٌۭ مَّا عَبَدتُّمْ",
     if (tipeQuest(data.gameType) === "ayat") {
       let arrFileLoc = answerData(114, 78, [parseInt(data.surahIdx)]); //mengambil data random dengan pengecualian index file tertentu
       for (idx of arrFileLoc) {
@@ -327,6 +319,9 @@ startBtn.addEventListener("click", () => {
   }, 1000);
 });
 
+
+// menampilkan pilihan jawaban
+// tinggal membuat fungsi cek jawaban
 function showAnswer(arr) {
   let indexRandom = randomData(3, 1, false, true);
   arr.forEach((e, i) => {
