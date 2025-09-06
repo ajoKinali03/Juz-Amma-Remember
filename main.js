@@ -43,6 +43,9 @@ function randomData(max, min, selain, array) {
 //menyiapkan jawaban dan merandomkannya
 function answerData(max, min, specialArr) {
   let arr = [];
+  if (max <= 3 && specialArr[0] <= 3) {
+    arr.push(0);
+  }
   while (true) {
     let fileLoc = randomData(max, min, specialArr);
     arr.push(fileLoc);
@@ -84,7 +87,7 @@ function tipeQuest(quest) {
 }
 
 //menampilkan data surah
-loadData("./surah.json").then((surah) => {
+loadData("./data/surah.json").then((surah) => {
   let btnSurah = document.getElementById("btn-surah");
   let selectSurah = document.getElementById("select-surah");
 
@@ -183,7 +186,6 @@ startBtn.addEventListener("click", () => {
         });
       } else {
         let curentGameType = gameType[randomData(gameType.length - 1, 0)];
-        console.log(gameType);
         quest.innerHTML = curentGameType;
         ques.innerHTML = eval("res.verse.verse_" + verseId);
 
@@ -229,7 +231,7 @@ startBtn.addEventListener("click", () => {
                   eval("res.verse.verse_" + randomData(res.count, 1))
                 );
               }
-              if (arrAnswer.length == 3) {
+              if (arrAnswer.length == arrFileLoc.length) {
                 showAnswer(arrAnswer);
               }
             }
@@ -242,7 +244,7 @@ startBtn.addEventListener("click", () => {
                   eval("res.verse.verse_" + randomData(res.count, 1))
                 );
               }
-              if (arrAnswer.length == 3) {
+              if (arrAnswer.length == arrFileLoc.length) {
                 showAnswer(arrAnswer);
               }
             }
@@ -254,7 +256,7 @@ startBtn.addEventListener("click", () => {
                   eval("res.verse.verse_" + randomData(res.count, 1))
                 );
               }
-              if (arrAnswer.length == 3) {
+              if (arrAnswer.length == arrFileLoc.length) {
                 showAnswer(arrAnswer);
               }
             }
@@ -270,13 +272,13 @@ startBtn.addEventListener("click", () => {
         } else {
           arrAnswer.push("Ayat ke-" + idx);
         }
-        if (arrAnswer.length == 3) {
+        if (arrAnswer.length == arrnNumAyah.length) {
           showAnswer(arrAnswer);
         }
       }
       document.getElementById("list-jawaban").style.display = "block"; //menampilkan pilihan jawabn
     } else if (tipeQuest(data.gameType) === "nama") {
-      loadData("./surah.json").then((res) => {
+      loadData("./data/surah.json").then((res) => {
         setTimeout(async () => {
           let idxName = res[data.indexArray].title;
           let namaAyt = answerData(114, 78, [idxName]);
@@ -287,7 +289,7 @@ startBtn.addEventListener("click", () => {
             } else {
               arrAnswer.push(arrTakeName[idx]);
             }
-            if (arrAnswer.length == 3) {
+            if (arrAnswer.length == namaAyt.length) {
               showAnswer(arrAnswer);
             }
           }
@@ -305,7 +307,7 @@ startBtn.addEventListener("click", () => {
             } else {
               arrAnswer.push(eval("res.verse.verse_" + idx));
             }
-            if (arrAnswer.length == 3) {
+            if (arrAnswer.length == terjAyt.length) {
               showAnswer(arrAnswer);
             }
           }
@@ -318,7 +320,6 @@ startBtn.addEventListener("click", () => {
     loading.style.display = "none"; //menghapus teks loading
   }, 1000);
 });
-
 
 // menampilkan pilihan jawaban
 // tinggal membuat fungsi cek jawaban
