@@ -122,7 +122,7 @@ startBtn.addEventListener("click", () => {
   if (globalValue.innerHTML === "all") {
     let curentGameType = gameType[randomData(gameType.length - 1, 0)];
     let idxFile = randomData(114, 78);
-    loadData(`./surah/surah_${idxFile}.json`).then((res) => {
+    loadData(`./data/surah/surah_${idxFile}.json`).then((res) => {
       let verseId = randomData(res.count, 1);
       if (res.count === verseId) {
         gameType = gameType.filter((e) => e != "Apa Ayat Sesudahnya?");
@@ -161,7 +161,7 @@ startBtn.addEventListener("click", () => {
   } else {
     let dataSurah = JSON.parse(globalValue.innerHTML);
     let idxSurah = parseInt(dataSurah.index);
-    loadData(`./surah/surah_${idxSurah}.json`).then((res) => {
+    loadData(`./data/surah/surah_${idxSurah}.json`).then((res) => {
       gameType = gameType.filter((e) => e != "Tebak Nama Surat Dari Ayat ini?");
       let verseId = randomData(res.count, 1);
       let idxFile = parseInt(res.index);
@@ -219,7 +219,7 @@ startBtn.addEventListener("click", () => {
     if (tipeQuest(data.gameType) === "ayat") {
       let arrFileLoc = answerData(114, 78, [parseInt(data.surahIdx)]); //mengambil data random dengan pengecualian index file tertentu
       for (idx of arrFileLoc) {
-        loadData(`./surah/surah_${idx}.json`).then((res) => {
+        loadData(`./data/surah/surah_${idx}.json`).then((res) => {
           if (data.lastAyat) {
             if (data.gameType === "Apa Ayat Sebelumnya?") {
               if (arrAnswer.length == 0) {
@@ -296,7 +296,7 @@ startBtn.addEventListener("click", () => {
 
       document.getElementById("list-jawaban").style.display = "block";
     } else if (tipeQuest(data.gameType) === "terj") {
-      loadData(`./id/id_translation_${parseInt(data.surahIdx)}.json`).then(
+      loadData(`./data/id/id_translation_${parseInt(data.surahIdx)}.json`).then(
         (res) => {
           let terjAyt = answerData(data.totalAyat, 1, [data.ayatVerse]);
           for (idx of terjAyt) {
