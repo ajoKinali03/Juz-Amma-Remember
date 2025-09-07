@@ -11,6 +11,7 @@ const loadData = async function (file) {
 // nilai global
 let globalValue = document.getElementById("global-value");
 let inisiator = document.getElementById("inisiator");
+
 // mengacak angka
 function randomData(max, min, selain, array) {
   let countData = Array.from({ length: max - min + 1 }, (_, i) => i + min);
@@ -120,8 +121,11 @@ loadData("./data/surah.json").then((surah) => {
 let ques = document.getElementById("question");
 let quest = document.getElementById("quest");
 let startBtn = document.getElementById("start");
-
+let jwbBtn = document.getElementById("jawab");
+jwbBtn.disabled = true;
 startBtn.addEventListener("click", () => {
+  resetCheckBox();
+
   if (globalValue.innerHTML === "all") {
     let curentGameType = gameType[randomData(gameType.length - 1, 0)];
     let idxFile = randomData(114, 78);
@@ -328,6 +332,7 @@ function showAnswer(arr) {
   arr.forEach((e, i) => {
     if (typeof e == "object") {
       document.getElementById(`${indexRandom[i]}`).innerHTML = e[0];
+      document.getElementById("indikator").innerHTML = `${indexRandom[i]}`;
     } else {
       if (i != indexRandom) {
         document.getElementById(`${indexRandom[i]}`).innerHTML = e;
@@ -335,3 +340,81 @@ function showAnswer(arr) {
     }
   });
 }
+
+// memeriksa jawaban
+jwbBtn.addEventListener("click", () => {
+  let indikator = document.getElementById("indikator").innerHTML;
+  let isChecked = document.getElementById(`check${indikator}`).checked;
+  if (isChecked) {
+    document.getElementById(indikator).style.color = "green";
+    jwbBtn.disabled = true;
+    alert("BETUUUUUL");
+    saveScore(true); // simpan score benar
+  } else {
+    document.getElementById(indikator).style.color = "red";
+    jwbBtn.disabled = true;
+    alert("HaHAhaHAhA SALAH");
+    saveScore(false); // simpan score salah
+  }
+});
+
+// reset checkbox
+function resetCheckBox() {
+  for (let i = 1; i <= 3; i++) {
+    document.getElementById(`check${i}`).checked = false;
+    document.getElementById(i).style.color = "black";
+  }
+}
+
+// ...existing code...
+document
+  .querySelectorAll('#list-jawaban input[type="checkbox"]')
+  .forEach((checkbox) => {
+    checkbox.addEventListener("change", function () {
+      if (this.checked) {
+        jwbBtn.disabled = false;
+        document
+          .querySelectorAll('#list-jawaban input[type="checkbox"]')
+          .forEach((cb) => {
+            if (cb !== this) cb.checked = false;
+          });
+      }
+    });
+  });
+
+// ...existing code...
+
+// Fungsi untuk menyimpan hasil jawaban ke localStorage
+function saveScore(isCorrect) {
+  let score = JSON.parse(localStorage.getItem("score")) || {
+    benar: 0,
+    salah: 0,
+    total: 0,
+  };
+  if (isCorrect) {
+    score.benar += 1;
+  } else {
+    score.salah += 1;
+  }
+  score.total += 1;
+  localStorage.setItem("score", JSON.stringify(score));
+}
+
+// Event listener tombol score
+document.getElementById("btn-score").addEventListener("click", () => {
+  let score = JSON.parse(localStorage.getItem("score")) || {
+    benar: 0,
+    salah: 0,
+    total: 0,
+  };
+  let persenBenar = score.total
+    ? ((score.benar / score.total) * 100).toFixed(2)
+    : 0;
+  let persenSalah = score.total
+    ? ((score.salah / score.total) * 100).toFixed(2)
+    : 0;
+  alert(
+    `Total Jawaban: ${score.total}\nBenar: ${score.benar} (${persenBenar}%)\nSalah: ${score.salah} (${persenSalah}%)`
+  );
+});
+// ...existing code...

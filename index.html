@@ -9,12 +9,16 @@
     <p id="global-value" style="display: none">all</p>
     <!-- Jika anda ingin jujur jangan ganti display menjadi inline :( -->
     <p id="inisiator" style="display: none;"></p>
+    <p id="indikator" style="display: none;"></p>
     <header>
       <h1>Mahapa</h1>
       <ul>
         <li><a href="#">Tutorial</a></li>
-        <li id="btn-surah">
-          <button type="button" name="surah">Surah</button>
+        <li>
+          <button type="button" name="surah" id="btn-surah">Surah</button>
+        </li>
+        <li>
+          <button type="button" name="score" id="btn-score">Score</button>
         </li>
       </ul>
       <select
@@ -42,15 +46,15 @@
           <ol style="font-size: 1.5rem;">
             <li>
               <p name="jawab1" id="1"></p>
-              <input type="checkbox" name="jawab1"/>
+              <input type="checkbox" name="jawab1" id="check1"/>
             </li>
             <li>
               <p name="jawab2" id="2"></p>
-              <input type="checkbox" name="jawab2"/>
+              <input type="checkbox" name="jawab2" id="check2"/>
             </li>
             <li>
               <p name="jawab3" id="3"></p>
-              <input type="checkbox" name="jawab3"/>
+              <input type="checkbox" name="jawab3" id="check3"/>
             </li>
             <!-- <li>
               <p name="jawab4" id="4"></p>
