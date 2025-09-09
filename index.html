@@ -3,24 +3,42 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>mahapa</title>
   </head>
-  <body>
+  <body class="vw-100 vh-100 d-flex flex-column align-items-center">
     <p id="global-value" style="display: none">all</p>
     <!-- Jika anda ingin jujur jangan ganti display menjadi inline :( -->
-    <p id="inisiator" style="display: none;"></p>
-    <p id="indikator" style="display: none;"></p>
-    <header>
-      <h1>Mahapa</h1>
-      <ul>
-        <li><a href="#">Tutorial</a></li>
-        <li>
-          <button type="button" name="surah" id="btn-surah">Surah</button>
-        </li>
-        <li>
-          <button type="button" name="score" id="btn-score">Score</button>
-        </li>
-      </ul>
+    <p id="inisiator" style="display: none"></p>
+    <p id="indikator" style="display: none"></p>
+    <header class="row w-100 mt-2 px-4">
+      <div class="row">
+        <h1 class="col-3 fs-1" style="display: block">Mahapa</h1>
+        <div class="col d-flex justify-content-end gap-3">
+          <button
+            type="button"
+            name="score"
+            id="btn-score"
+            class="btn btn-custom col-2 justify-content-end fs-3"
+          >
+            Score
+          </button>
+          <button
+            type="button"
+            name="surah"
+            id="btn-surah"
+            class="btn btn-custom col-2 justify-content-end fs-3"
+          >
+            Surah
+          </button>
+        </div>
+      </div>
       <select
         id="select-surah"
         multiple
@@ -29,42 +47,84 @@
         name="surah"
       ></select>
     </header>
-    <container>
-      <section class="question">
-        <div>
-          <p id="question" style="font-size: 1.5rem;">Selamat Datang 😆</p>
-          <p id="quest" style="font-size: 1.5rem;"></p>
+    <container class="col w-100 h-100 d-flex flex-column align-items-center">
+      <div class="question-box w-50 row my-5 align-content-center gap-2 py-1">
+        <p id="question" class="row justify-content-center fs-1 m-0">
+          Selamat Datang 😆
+        </p>
+        <p id="quest" class="row justify-content-center fs-4 m-0"></p>
+        <div class="row justify-content-center align-items-end gap-4 m-0">
+          <button
+            type="button"
+            id="jawab"
+            class="btn btn-custom col-3 fs-4 px-4"
+            style="width: max-content"
+          >
+            Jawab
+          </button>
+          <button
+            type="button"
+            id="start"
+            class="btn btn-custom col-3 fs-4 px-4"
+            style="width: max-content"
+          >
+            Start
+          </button>
         </div>
-      </section>
-      <section class="answer">
-        <button type="button" id="jawab">Jawab</button>
-        <button type="button" id="start" >Start</button>
-        <h2>Apa Jawaban Mu?</h2>
-        <p id="loading" style="display: none;">LOADING...</p>
-        <p id="answaer-not-found" style="display: none;">JAWABAN TIDAK TERSEDIA</p>
-        <div id="list-jawaban" style="display: none;">
-          <ol style="font-size: 1.5rem;">
-            <li>
-              <p name="jawab1" id="1"></p>
-              <input type="checkbox" name="jawab1" id="check1"/>
+      </div>
+      <div
+        class="answer w-100 col justify-content-center"
+      >
+        <h3 class="row justify-content-center w-100">Apa Jawaban Mu?</h3>
+        <p id="loading" class="row text-center fs-3" style="display: none">
+          LOADING...
+        </p>
+        <p id="answer-not-found" class="row text-center" style="display: none">
+          JAWABAN TIDAK TERSEDIA
+        </p>
+        <div id="list-jawaban" style="display: none" class="row m-0 p-0">
+          <ul class="options fs-3 row justify-content-center w-100 m-0">
+            <li class="option col-11">
+              <input
+                type="checkbox"
+                name="jawab1"
+                id="check1"
+                style="display: none"
+              />
+              <p name="jawab1" id="1" class="my-2"></p>
             </li>
-            <li>
-              <p name="jawab2" id="2"></p>
-              <input type="checkbox" name="jawab2" id="check2"/>
+            <li class="option col-11">
+              <input
+                type="checkbox"
+                name="jawab2"
+                id="check2"
+                style="display: none"
+              />
+              <p name="jawab2" id="2" class="my-2"></p>
             </li>
-            <li>
-              <p name="jawab3" id="3"></p>
-              <input type="checkbox" name="jawab3" id="check3"/>
+            <li class="option col-11 align-items-center">
+              <input
+                type="checkbox"
+                name="jawab3"
+                id="check3"
+                style="display: none"
+              />
+              <p name="jawab3" id="3" class="my-2"></p>
             </li>
-            <!-- <li>
-              <p name="jawab4" id="4"></p>
-              <input type="checkbox" name="jawab4"/>
-            </li> -->
-          </ol>
+          </ul>
         </div>
-      </section>
+      </div>
     </container>
-    <footer></footer>
     <script src="main.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
+      integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

@@ -1,0 +1,97 @@
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: 1px solid red;
+  color: white;
+}
+body {
+  background: #fdfdfd;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+
+.btn-custom {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  /* padding: 8px 20px; */
+  border-radius: 8px;
+  /* font-size: 1rem; */
+}
+
+.btn-custom:hover {
+  background-color: #388e3c;
+}
+
+/* Question box */
+.question-box {
+  background: #66bb6a;
+  color: white;
+  text-align: center;
+  /* padding: 15px; */
+  border-radius: 12px;
+  /* font-size: 1.4rem; */
+  /* margin: 30px auto 20px; */
+  /* width: 80%; */
+  /* max-width: 600px; */
+}
+
+/* Answer & Start buttons */
+/* .action-buttons {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.action-buttons .btn {
+  margin: 0 10px;
+  border-radius: 8px;
+} */
+
+/* Answer box */
+/* .answer {
+  padding: 20px;
+} */
+
+h1 {
+  color: #83e088;
+  /* font-size: 1.2rem; */
+  /* margin-bottom: 15px; */
+}
+
+.answer {
+  background: #83e088;
+  border-radius: 8px;
+  /* padding: 15px; */
+  /* margin: 10px 0; */
+}
+
+.options {
+  list-style: none;
+  /* margin-bottom: 25px; */
+}
+
+.option {
+  background-color: #66bb6a;
+  border-radius: 8px;
+  /* padding: 12px 15px; */
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.option:hover {
+  background-color: #82d886;
+  transform: translateX(5px);
+}
+
+
+
+/* buatkan code css untuk mengatur tampilan div class answer dan jadikan responsive */
+
+/* @media (max-width: 768px) {
+  .answer {
+    padding: 10px;
+  }
+} */

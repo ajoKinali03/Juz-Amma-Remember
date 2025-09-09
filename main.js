@@ -362,7 +362,7 @@ jwbBtn.addEventListener("click", () => {
 function resetCheckBox() {
   for (let i = 1; i <= 3; i++) {
     document.getElementById(`check${i}`).checked = false;
-    document.getElementById(i).style.color = "black";
+    document.getElementById(i).style.color = "white";
   }
 }
 
@@ -381,6 +381,39 @@ document
       }
     });
   });
+
+// buatkan code js untuk merubah warna teks pilihan jawaban ketika checkbox di ceklist
+document
+  .querySelectorAll('#list-jawaban input[type="checkbox"]')
+  .forEach((checkbox) => {
+    checkbox.addEventListener("change", function () {
+      let bg = this.parentElement;
+      if (this.checked) {
+        document
+          .querySelectorAll('#list-jawaban input[type="checkbox"]')
+          .forEach((cb) => {
+            if (cb !== this) {
+              cb.checked = false;
+              let otherBg = cb.parentElement;
+              otherBg.style.backgroundColor = "#66bb6a";
+            }
+          });
+        bg.style.backgroundColor = "green";
+        jwbBtn.addEventListener("click", () => {
+          bg.style.backgroundColor = "#66bb6a";
+        }); 
+      }
+    });
+  });
+
+// buatkan code untuk ceklist checkbox ketika li dengan class option di tekan
+document.querySelectorAll("#list-jawaban .option").forEach((option) => {
+  option.addEventListener("click", function () {
+    const checkbox = this.querySelector('input[type="checkbox"]');
+    checkbox.checked = !checkbox.checked;
+    checkbox.dispatchEvent(new Event("change"));
+  });
+});
 
 // ...existing code...
 
