@@ -25,30 +25,58 @@
             type="button"
             name="score"
             id="btn-score"
-            class="btn btn-custom col-2 justify-content-end fs-3"
+            class="btn btn-custom col-2 justify-content-end fs-3 glass"
           >
             Score
           </button>
           <button
             type="button"
-            name="surah"
             id="btn-surah"
-            class="btn btn-custom col-2 justify-content-end fs-3"
+            class="btn btn-custom col-2 justify-content-end fs-3 glass"
+            data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop"
           >
             Surah
           </button>
         </div>
       </div>
-      <select
-        id="select-surah"
-        multiple
-        size="7"
-        style="display: none"
-        name="surah"
-      ></select>
+      <div
+        id="staticBackdrop"
+        class="modal fade"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <p>List Pilihan Surah</p>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <select
+              id="select-surah"
+              multiple
+              size="7"
+              style="display: none; color: black"
+              name="surah"
+              class="fs-3 modal-body"
+            ></select>
+          </div>
+        </div>
+      </div>
     </header>
-    <container class="col w-100 h-100 d-flex flex-column align-items-center">
-      <div class="question-box w-50 row my-5 align-content-center gap-2 py-1">
+    <container
+      class="col w-100 h-100 d-flex flex-column align-items-center glass mt-3 contaianer-answer"
+      style="color: white"
+    >
+      <div class="question-box w-50 row my-5 align-content-center gap-2 py-3">
         <p id="question" class="row justify-content-center fs-1 m-0">
           Selamat Datang 😆
         </p>
@@ -72,9 +100,7 @@
           </button>
         </div>
       </div>
-      <div
-        class="answer w-100 col justify-content-center"
-      >
+      <div class="answer w-100 col justify-content-center">
         <h3 class="row justify-content-center w-100">Apa Jawaban Mu?</h3>
         <p id="loading" class="row text-center fs-3" style="display: none">
           LOADING...

@@ -1,35 +1,43 @@
-
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  outline: 1px solid red;
-  color: white;
-}
-body {
-  background: #fdfdfd;
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-family: "Amiri", "Scheherazade New", "Lateef", serif;
+  /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
+  /* outline: 1px solid red; */
 }
 
+body {
+  background: linear-gradient(to bottom right, #0f766e, #0e7490, #1e40af);
+}
+
+#select-surah option:hover {
+  background-color: rgb(165, 165, 165);
+}
 
 .btn-custom {
-  background-color: #4caf50;
+  /* background-color: #50bb52; */
   border: none;
   color: white;
+  background-color: rgba(255, 255, 255, 0.2);
   /* padding: 8px 20px; */
-  border-radius: 8px;
+  border-radius: 50px;
+  border: 1px solid white;
   /* font-size: 1rem; */
 }
 
 .btn-custom:hover {
-  background-color: #388e3c;
+background: rgba(255, 255, 255, 0.9);
+  /* background: #d97706; */
+  color: #0f766e;
 }
 
 /* Question box */
 .question-box {
-  background: #66bb6a;
+  /* background: #66bb6a; */
   color: white;
   text-align: center;
+  outline: 1px solid white;
   /* padding: 15px; */
   border-radius: 12px;
   /* font-size: 1.4rem; */
@@ -55,43 +63,49 @@ body {
 } */
 
 h1 {
-  color: #83e088;
+  color: white;
   /* font-size: 1.2rem; */
   /* margin-bottom: 15px; */
 }
 
+.glass {
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.10);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4.8px);
+  -webkit-backdrop-filter: blur(4.8px);
+  border: 1px solid rgba(255, 255, 255, 0.53);
+}
+
+.container-answer {
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
 .answer {
-  background: #83e088;
+  background: rgba(247, 247, 247, 0.15);
   border-radius: 8px;
+  outline: 1px solid white;
+  box-shadow: 0 -4px 30px rgba(0, 32, 68, 0.274);
   /* padding: 15px; */
   /* margin: 10px 0; */
 }
 
-.options {
-  list-style: none;
-  /* margin-bottom: 25px; */
-}
-
 .option {
-  background-color: #66bb6a;
+  background: rgba(255, 255, 255, 0.9);
+  list-style: none;
   border-radius: 8px;
   /* padding: 12px 15px; */
   margin-bottom: 10px;
   cursor: pointer;
   transition: all 0.2s ease;
+  padding: 0 1%;
 }
 
 .option:hover {
-  background-color: #82d886;
+  background: rgba(255, 255, 255, 0.9);
   transform: translateX(5px);
 }
-
-
-
-/* buatkan code css untuk mengatur tampilan div class answer dan jadikan responsive */
-
-/* @media (max-width: 768px) {
-  .answer {
-    padding: 10px;
-  }
-} */

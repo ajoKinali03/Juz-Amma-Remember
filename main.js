@@ -111,11 +111,11 @@ loadData("./data/surah.json").then((surah) => {
     }
   });
 
-  document.addEventListener("click", (el) => {
-    if (el.target.innerText !== "Surah" && el.target.localName !== "option") {
-      selectSurah.style.display = "none";
-    }
-  });
+  // document.addEventListener("click", (el) => {
+  //   if (el.target.innerText !== "Surah" && el.target.localName !== "option") {
+
+  //   }
+  // });
 });
 
 let ques = document.getElementById("question");
@@ -320,6 +320,7 @@ startBtn.addEventListener("click", () => {
 
       document.getElementById("list-jawaban").style.display = "block";
     }
+
     startBtn.disabled = false;
     loading.style.display = "none"; //menghapus teks loading
   }, 1000);
@@ -338,6 +339,11 @@ function showAnswer(arr) {
         document.getElementById(`${indexRandom[i]}`).innerHTML = e;
       }
     }
+  });
+  let arrNumEl = ["A. ", "B. ", "C. "];
+  arrNumEl.forEach((e, i) => {
+    let el = document.getElementById(`${(i += 1)}`);
+    el.innerHTML = `${e}${el.innerHTML}`
   });
 }
 
@@ -361,8 +367,9 @@ jwbBtn.addEventListener("click", () => {
 // reset checkbox
 function resetCheckBox() {
   for (let i = 1; i <= 3; i++) {
+    let el = document.getElementById(i);
     document.getElementById(`check${i}`).checked = false;
-    document.getElementById(i).style.color = "white";
+    el.style.color = "#1e293b";
   }
 }
 
@@ -395,13 +402,13 @@ document
             if (cb !== this) {
               cb.checked = false;
               let otherBg = cb.parentElement;
-              otherBg.style.backgroundColor = "#66bb6a";
+              otherBg.style.backgroundColor = "rgba(255, 255, 255, 0.29)";
             }
           });
-        bg.style.backgroundColor = "green";
+        bg.style.backgroundColor = "rgba(252, 252, 252, 1)";
         jwbBtn.addEventListener("click", () => {
-          bg.style.backgroundColor = "#66bb6a";
-        }); 
+          bg.style.backgroundColor = "rgba(255, 255, 255, 0.29)";
+        });
       }
     });
   });
