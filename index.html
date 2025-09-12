@@ -26,9 +26,49 @@
             name="score"
             id="btn-score"
             class="btn btn-custom col-2 justify-content-end fs-3 glass"
+            data-bs-toggle="modal"
+            data-bs-target="#score"
           >
             Score
           </button>
+          <div
+            id="score"
+            class="modal fade"
+            data-bs-backdrop="static"
+            data-bs-keyboard="false"
+            tabindex="-1"
+            aria-labelledby="score"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content glass text-white">
+                <div class="modal-header">
+                  <p>Score</p>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <div class="donut-chart" style="--value:0">
+                    <div class="center-text"></div>
+                  </div>
+                  <div class="labels w-100">
+                    <div class="label">
+                      <div class="color-box color2"></div>
+                      <p class="label2"></p>
+                    </div>
+                    <div class="label">
+                      <div class="color-box color1"></div>
+                      <p class="label1"></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <button
             type="button"
             id="btn-surah"
@@ -50,24 +90,29 @@
         aria-hidden="true"
       >
         <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <p>List Pilihan Surah</p>
+          <div class="modal-content glass">
+            <div class="modal-header row justify-content-between m-0 w-100">
+              <p class="col mw-100 m-0 -p-0 fs-5 text-white">
+                List pilihan surah
+              </p>
               <button
                 type="button"
-                class="btn-close"
+                class="btn-close col-1 justify-content-end"
                 data-bs-dismiss="modal"
                 aria-label="Close"
+                style="background-color: white"
               ></button>
             </div>
-            <select
-              id="select-surah"
-              multiple
-              size="7"
-              style="display: none; color: black"
-              name="surah"
-              class="fs-3 modal-body"
-            ></select>
+            <div class="modal-body p-1">
+              <select
+                id="select-surah"
+                multiple
+                size="7"
+                style="display: none; color: rgb(255, 255, 255)"
+                name="surah"
+                class="fs-3 w-100 glass p-3"
+              ></select>
+            </div>
           </div>
         </div>
       </div>
@@ -102,12 +147,50 @@
       </div>
       <div class="answer w-100 col justify-content-center">
         <h3 class="row justify-content-center w-100">Apa Jawaban Mu?</h3>
-        <p id="loading" class="row text-center fs-3" style="display: none">
-          LOADING...
-        </p>
+        <div class="row justify-content-center m-0 p-0">
+          <img
+            src="./img/a_black_cat_jumping_with_a_fish_20250702_230759_0_v2.gif"
+            alt="https://pixie.haus/"
+            id="loading"
+            class="cat img-fluid row justify-content-center"
+            style="max-width: 15vw; display: none"
+          />
+        </div>
         <p id="answer-not-found" class="row text-center" style="display: none">
           JAWABAN TIDAK TERSEDIA
         </p>
+        <div class="position-absolute z-1 w-25" style="top: 0">
+          <img
+            src="./img/cute-cat-using-a-computer_20250816_185137_0_v3.gif"
+            class="img-fluid"
+            alt="https://pixie.haus/"
+            style="max-width: 10vw"
+          />
+          <img
+            src="./img/corect.png"
+            alt="https://pixie.haus/"
+            class="img-fluid"
+            style="
+              max-width: 8vw;
+              margin-top: 20px;
+              translate: -10px;
+              display: none;
+            "
+            id="corect"
+          />
+          <img
+            src="./img/wrong.png"
+            alt="https://pixie.haus/"
+            class="img-fluid"
+            style="
+              max-width: 8vw;
+              margin-top: 20px;
+              translate: -10px;
+              display: none;
+            "
+            id="wrong"
+          />
+        </div>
         <div id="list-jawaban" style="display: none" class="row m-0 p-0">
           <ul class="options fs-3 row justify-content-center w-100 m-0">
             <li class="option col-11">

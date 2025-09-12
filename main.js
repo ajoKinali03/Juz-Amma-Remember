@@ -323,7 +323,7 @@ startBtn.addEventListener("click", () => {
 
     startBtn.disabled = false;
     loading.style.display = "none"; //menghapus teks loading
-  }, 1000);
+  }, 2000);
 });
 
 // menampilkan pilihan jawaban
@@ -343,7 +343,7 @@ function showAnswer(arr) {
   let arrNumEl = ["A. ", "B. ", "C. "];
   arrNumEl.forEach((e, i) => {
     let el = document.getElementById(`${(i += 1)}`);
-    el.innerHTML = `${e}${el.innerHTML}`
+    el.innerHTML = `${e}${el.innerHTML}`;
   });
 }
 
@@ -352,14 +352,13 @@ jwbBtn.addEventListener("click", () => {
   let indikator = document.getElementById("indikator").innerHTML;
   let isChecked = document.getElementById(`check${indikator}`).checked;
   if (isChecked) {
-    document.getElementById(indikator).style.color = "green";
+    document.getElementById("corect").style.display = "inline";
     jwbBtn.disabled = true;
-    alert("BETUUUUUL");
     saveScore(true); // simpan score benar
   } else {
-    document.getElementById(indikator).style.color = "red";
+    document.getElementById("wrong").style.display = "inline";
+    document.getElementById(indikator).style.color = "#008006ff";
     jwbBtn.disabled = true;
-    alert("HaHAhaHAhA SALAH");
     saveScore(false); // simpan score salah
   }
 });
@@ -370,7 +369,12 @@ function resetCheckBox() {
     let el = document.getElementById(i);
     document.getElementById(`check${i}`).checked = false;
     el.style.color = "#1e293b";
+    let bgLi = document.getElementsByClassName("option")[i - 1];
+    bgLi.style.backgroundColor = "white";
+    bgLi.style.opacity = "0.9";
   }
+  document.getElementById("corect").style.display = "none";
+  document.getElementById("wrong").style.display = "none";
 }
 
 // ...existing code...
@@ -405,10 +409,6 @@ document
               otherBg.style.backgroundColor = "rgba(255, 255, 255, 0.29)";
             }
           });
-        bg.style.backgroundColor = "rgba(252, 252, 252, 1)";
-        jwbBtn.addEventListener("click", () => {
-          bg.style.backgroundColor = "rgba(255, 255, 255, 0.29)";
-        });
       }
     });
   });
@@ -453,8 +453,12 @@ document.getElementById("btn-score").addEventListener("click", () => {
   let persenSalah = score.total
     ? ((score.salah / score.total) * 100).toFixed(2)
     : 0;
-  alert(
-    `Total Jawaban: ${score.total}\nBenar: ${score.benar} (${persenBenar}%)\nSalah: ${score.salah} (${persenSalah}%)`
-  );
+  
+  persenBenar = parseInt(persenBenar);
+  persenSalah = parseInt(persenSalah);
+  document.getElementsByClassName("donut-chart")[0].style.setProperty('--value', `${persenBenar ? persenBenar : 100}`)
+  document.getElementsByClassName("center-text")[0].innerHTML = `${persenBenar}%`;
+  document.getElementsByClassName("label1")[0].innerHTML = `Jawaban yang benar: ${score.benar}`
+  document.getElementsByClassName("label2")[0].innerHTML = `Jawaban yang salah: ${score.salah}`
 });
 // ...existing code...

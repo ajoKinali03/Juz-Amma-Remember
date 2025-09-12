@@ -11,8 +11,38 @@ body {
   background: linear-gradient(to bottom right, #0f766e, #0e7490, #1e40af);
 }
 
+#select-surah {
+  border: none;
+}
+
+#select-surah:focus {
+  outline: none;
+}
+#select-surah::-webkit-scrollbar {
+  border-radius: 10px;
+}
+#select-surah::-webkit-scrollbar-track {
+  background-color: white;
+  border-radius: 10px;
+}
+#select-surah::-webkit-scrollbar-thumb {
+  background-color: grey;
+  border-radius: 10px;
+}
+
+#select-surah option {
+  border-bottom: 1px solid rgb(255, 255, 255, 0.2);
+}
 #select-surah option:hover {
-  background-color: rgb(165, 165, 165);
+  background-color: rgb(255, 255, 255);
+  color: #0f766e;
+  border: none;
+}
+#select-surah option:checked {
+  background-color: rgb(255, 255, 255);
+  color: #0f766e;
+  border: none;
+  border-bottom: 1px solid rgb(145, 145, 145);
 }
 
 .btn-custom {
@@ -27,8 +57,7 @@ body {
 }
 
 .btn-custom:hover {
-background: rgba(255, 255, 255, 0.9);
-  /* background: #d97706; */
+  background: rgba(255, 255, 255, 0.9);
   color: #0f766e;
 }
 
@@ -70,7 +99,7 @@ h1 {
 
 .glass {
   /* From https://css.glass */
-  background: rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(4.8px);
@@ -103,9 +132,75 @@ h1 {
   cursor: pointer;
   transition: all 0.2s ease;
   padding: 0 1%;
+  color: #1e293b;
 }
 
 .option:hover {
   background: rgba(255, 255, 255, 0.9);
   transform: translateX(5px);
+}
+
+.donut-chart {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: conic-gradient(
+    #2ecc43 0% calc(var(--value) * 1%),
+    #dd3b3b calc(var(--value) * 1%) 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Lingkaran dalam untuk efek donat */
+.donut-chart::before {
+  content: "";
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background: white;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+/* Teks persentase di tengah */
+.donut-chart .center-text {
+  position: relative;
+  z-index: 2;
+  font-family: Arial, sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  color: #16b61e;
+}
+
+/* Label nilai */
+.labels {
+  margin-top: 20px;
+  font-family: Arial, sans-serif;
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+}
+
+.color-box {
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+}
+
+.color1 {
+  background-color: #2ecc43;
+}
+
+.color2 {
+  background-color: #dd3b3b;
 }
