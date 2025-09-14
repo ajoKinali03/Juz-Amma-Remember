@@ -189,6 +189,7 @@ h1 {
   align-items: center;
   gap: 8px;
   font-size: 16px;
+  outline: 1px solid white;
 }
 
 .color-box {
@@ -203,4 +204,26 @@ h1 {
 
 .color2 {
   background-color: #dd3b3b;
+}
+
+/* Media query untuk layar kecil (smartphone) */
+@media (max-width: 600px) {
+  .container {
+    flex-direction: column;
+  }
+  .item {
+    flex: 1 1 100%;
+  }
+  body {
+    font-size: 14px;
+  }
+}
+/* Media query untuk tablet */
+@media (min-width: 601px) and (max-width: 900px) {
+  .item {
+    flex: 1 1 45%;
+  }
+  body {
+    font-size: 15px;
+  }
 }

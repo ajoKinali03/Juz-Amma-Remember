@@ -379,6 +379,22 @@ function resetCheckBox() {
 
 // ...existing code...
 document
+  // .querySelectorAll('#list-jawaban input[type="checkbox"]')
+  // .forEach((checkbox) => {
+  //   checkbox.addEventListener("change", function () {
+  //     if (this.checked) {
+  //       jwbBtn.disabled = false;
+  //       document
+  //         .querySelectorAll('#list-jawaban input[type="checkbox"]')
+  //         .forEach((cb) => {
+  //           if (cb !== this) cb.checked = false;
+  //         });
+  //     }
+  //   });
+  // });
+
+// buatkan code js untuk merubah warna teks pilihan jawaban ketika checkbox di ceklist
+document
   .querySelectorAll('#list-jawaban input[type="checkbox"]')
   .forEach((checkbox) => {
     checkbox.addEventListener("change", function () {
@@ -387,27 +403,14 @@ document
         document
           .querySelectorAll('#list-jawaban input[type="checkbox"]')
           .forEach((cb) => {
-            if (cb !== this) cb.checked = false;
-          });
-      }
-    });
-  });
-
-// buatkan code js untuk merubah warna teks pilihan jawaban ketika checkbox di ceklist
-document
-  .querySelectorAll('#list-jawaban input[type="checkbox"]')
-  .forEach((checkbox) => {
-    checkbox.addEventListener("change", function () {
-      let bg = this.parentElement;
-      if (this.checked) {
-        document
-          .querySelectorAll('#list-jawaban input[type="checkbox"]')
-          .forEach((cb) => {
             if (cb !== this) {
               cb.checked = false;
               let otherBg = cb.parentElement;
               otherBg.style.backgroundColor = "rgba(255, 255, 255, 0.29)";
-            }
+            }else{
+              let bg = cb.parentElement;
+              bg.style.backgroundColor = "white";
+            };
           });
       }
     });
@@ -453,12 +456,54 @@ document.getElementById("btn-score").addEventListener("click", () => {
   let persenSalah = score.total
     ? ((score.salah / score.total) * 100).toFixed(2)
     : 0;
-  
+
   persenBenar = parseInt(persenBenar);
   persenSalah = parseInt(persenSalah);
-  document.getElementsByClassName("donut-chart")[0].style.setProperty('--value', `${persenBenar ? persenBenar : 100}`)
-  document.getElementsByClassName("center-text")[0].innerHTML = `${persenBenar}%`;
-  document.getElementsByClassName("label1")[0].innerHTML = `Jawaban yang benar: ${score.benar}`
-  document.getElementsByClassName("label2")[0].innerHTML = `Jawaban yang salah: ${score.salah}`
+  document
+    .getElementsByClassName("donut-chart")[0]
+    .style.setProperty("--value", `${persenBenar ? persenBenar : 100}`);
+  // document.getElementsByClassName(
+  //   "center-text"
+  // )[0].innerHTML = `${persenBenar}%`;
+  document.getElementsByClassName("label1")[0].innerHTML = `${persenBenar}%`;
+  document.getElementsByClassName("label2")[0].innerHTML = `${persenSalah}%`;
+  document.getElementsByClassName(
+    "total-jawab"
+  )[0].innerHTML = `${score.total}`;
+  document.getElementsByClassName(
+    "benar"
+  )[0].innerHTML = `betul: ${score.benar}`;
+  document.getElementsByClassName(
+    "salah"
+  )[0].innerHTML = `salah: ${score.salah}`;
+  achief(persenBenar);
 });
-// ...existing code...
+
+function achief(value) {
+  let achief = document.getElementsByClassName("achief")[0];
+  if (value == 0) {
+    achief.innerHTML = "Pendatang";
+    noneDispImg("pendatang")
+  } else if (value >= 80) {
+    achief.innerHTML = "Kelass Kiing~ 😎";
+    noneDispImg("king")
+  } else if (value <= 40) {
+    achief.innerHTML = "Pemula😏";
+    noneDispImg("pemula")
+  } else {
+    achief.innerHTML = "Sigma🤫";
+    noneDispImg("sigma")
+  }
+}
+
+function noneDispImg(name){
+  let imgEl = document.getElementsByClassName("center-text")[0].children;
+  for(el of imgEl){
+    let imgClassName = el.className.split(" ")[0];
+    if(imgClassName == name){
+      el.style.display = "block";
+    }else{
+      el.style.display = "none";
+    };
+  };
+};

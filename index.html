@@ -43,26 +43,68 @@
             <div class="modal-dialog">
               <div class="modal-content glass text-white">
                 <div class="modal-header">
-                  <p>Score</p>
+                  <p class="fs-3 m-0 p-0">Score</p>
                   <button
                     type="button"
                     class="btn-close"
                     data-bs-dismiss="modal"
                     aria-label="Close"
+                    style="background-color: white"
                   ></button>
                 </div>
                 <div class="modal-body">
-                  <div class="donut-chart" style="--value:0">
-                    <div class="center-text"></div>
-                  </div>
-                  <div class="labels w-100">
-                    <div class="label">
-                      <div class="color-box color2"></div>
-                      <p class="label2"></p>
+                  <div class="chart row">
+                    <div class="donut-chart col-1" style="--value: 0">
+                      <div
+                        class="center-text row justify-content-center p-0 m-0"
+                      >
+                        <img
+                          src="./img/kiing.png"
+                          class="king w-100"
+                          alt="https://pixie.haus/"
+                          style="display: none;"
+                        />
+                        <img
+                          src="./img/pemula.png"
+                          class="pemula w-75"
+                          alt="https://pixie.haus/"
+                          style="display: none;"
+                        />
+                        <img
+                          src="./img/sigma.png"
+                          class="sigma w-75"
+                          alt="https://pixie.haus/"
+                          style="display: none;"
+                        />
+                        <img
+                          src="./img/pendatang.png"
+                          class="pendatang w-75"
+                          alt="https://www.pngwing.com/en/free-png-ztxqv"
+                          style="display: none;"
+                        />
+                      </div>
                     </div>
-                    <div class="label">
-                      <div class="color-box color1"></div>
-                      <p class="label1"></p>
+                    <div class="teks-chart col text-center p-0 m-0">
+                      <p class="fs-3">Total Jawaban Kamu</p>
+                      <p class="total-jawab fs-4"></p>
+                      <div class="total-persentase row p-0 m-0">
+                        <p class="benar col fs-5">10</p>
+                        <p class="salah col fs-5">10</p>
+                      </div>
+                      <p
+                        class="achief fs-3"
+                        style="outline: 1px solid white"
+                      ></p>
+                    </div>
+                  </div>
+                  <div class="labels w-100 col justify-content-center">
+                    <div class="label col">
+                      <div class="color-box color2 ms-2"></div>
+                      <p class="label2 p-0 m-0"></p>
+                    </div>
+                    <div class="label col">
+                      <div class="color-box color1 ms-2"></div>
+                      <p class="label1 p-0 m-0"></p>
                     </div>
                   </div>
                 </div>
