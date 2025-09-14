@@ -3,14 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mahapa - Website Test Hafalan Juz Amma</title>
+     <meta name="description" content="Mahapa adalah game berbasis web untuk melatih hafalan juz amma atau juz 30 anda dengan cara yang menyenangkan, serta bisa mengganti metode murajaah hafalan kamu dengan lebih asik.">
+     <meta name="keywords" content="al-qur'an, quran, juz, juz amma, game, 30, juz 30, qur'an, hafalan, game, asik, menyenangkan, mudah, mengingat, ayat, surat, hafiz, tahfiz, murajaah, muraja'ah">
+     <meta name="author" content="Hamid">
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-      crossorigin="anonymous"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+    crossorigin="anonymous"
     />
     <link rel="stylesheet" href="style.css" />
-    <title>mahapa</title>
+     <link rel="icon" href="./img/arabic-calligraphy.png" type="image/x-icon">
   </head>
   <body class="vw-100 vh-100 d-flex flex-column align-items-center">
     <p id="global-value" style="display: none">all</p>
@@ -191,7 +195,7 @@
             </div>
             <div class="offcanvas-body">
               <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                <li class="nav-item">
+                <li class="nav-item btn-side-nav" style="display: none">
                   <a
                     href="#"
                     style="text-decoration: none"
@@ -204,7 +208,7 @@
                     >Score</a
                   >
                 </li>
-                <li class="nav-item">
+                <li class="nav-item btn-side-nav" style="display: none">
                   <a
                     style="text-decoration: none"
                     href="#"
@@ -223,7 +227,25 @@
                     class="nav-link active text-white fs-5"
                     aria-current="page"
                     onclick="alert('halaman belum dibuat')"
+                    >Home</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    href="#"
+                    class="nav-link active text-white fs-5"
+                    aria-current="page"
+                    onclick="alert('halaman belum dibuat')"
                     >Tutorial</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    href="#"
+                    class="nav-link active text-white fs-5"
+                    aria-current="page"
+                    onclick="alert('halaman belum dibuat')"
+                    >Artikel Web</a
                   >
                 </li>
                 <li class="nav-item">
@@ -248,7 +270,8 @@
                     <li class="p-2">
                       <a
                         class="dropdown-item fs-5 p-0"
-                        href="#"
+                        href="https://www.instagram.com/azwr.hamid"
+                        target="_blank"
                         style="color: #0f766e; border-bottom: 1px solid #0f766e"
                         >Instagram</a
                       >
@@ -256,7 +279,8 @@
                     <li class="p-2">
                       <a
                         class="dropdown-item fs-5 p-0"
-                        href="#"
+                        href="https://www.github.com/ajoKinali03"
+                        target="_blank"
                         style="color: #0f766e; border-bottom: 1px solid #0f766e"
                         >GitHub</a
                       >
@@ -268,20 +292,17 @@
           </div>
         </div>
       </nav>
-      <div class="row" style="display: none">
-        <h1 class="col-3 fs-1" style="display: block">Mahapa</h1>
-      </div>
     </header>
     <container
       class="col w-100 h-100 d-flex flex-column align-items-center glass mt-3 contaianer-answer"
       style="color: white"
     >
-      <div class="question-box w-50 row my-5 align-content-center gap-2 py-3">
+      <div class="question-box w-50 col-1 my-5 gap-2 py-3">
         <p id="question" class="row justify-content-center fs-1 m-0">
           Selamat Datang 😆
         </p>
         <p id="quest" class="row justify-content-center fs-4 m-0"></p>
-        <div class="row justify-content-center align-items-end gap-4 m-0">
+        <div class="row justify-content-center gap-4 m-0 mt-3 w-100">
           <button
             type="button"
             id="jawab"
@@ -314,7 +335,7 @@
         <p id="answer-not-found" class="row text-center" style="display: none">
           JAWABAN TIDAK TERSEDIA
         </p>
-        <div class="position-absolute z-1 w-25" style="top: 0">
+        <div class="corect-note position-absolute z-1 w-25" style="top: 0">
           <img
             src="./img/cute-cat-using-a-computer_20250816_185137_0_v3.gif"
             class="img-fluid"

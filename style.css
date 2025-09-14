@@ -4,7 +4,7 @@
   padding: 0;
   font-family: "Amiri", "Scheherazade New", "Lateef", serif;
   /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
-  outline: 1px solid red;
+  /* outline: 1px solid red; */
 }
 
 body {
@@ -40,7 +40,7 @@ body {
 }
 #select-surah option:checked {
   background-color: rgb(255, 255, 255);
-  color: #0f766e;
+  color: #0f766e;`
   border: none;
   border-bottom: 1px solid rgb(145, 145, 145);
 }
@@ -66,34 +66,7 @@ body {
   color: white;
   text-align: center;
   outline: 1px solid white;
-  /* padding: 15px; */
   border-radius: 12px;
-  /* font-size: 1.4rem; */
-  /* margin: 30px auto 20px; */
-  /* width: 80%; */
-  /* max-width: 600px; */
-}
-
-/* Answer & Start buttons */
-/* .action-buttons {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.action-buttons .btn {
-  margin: 0 10px;
-  border-radius: 8px;
-} */
-
-/* Answer box */
-/* .answer {
-  padding: 20px;
-} */
-
-h1 {
-  color: white;
-  /* font-size: 1.2rem; */
-  /* margin-bottom: 15px; */
 }
 
 .glass {
@@ -217,5 +190,60 @@ h1 {
 @media only screen and (max-width: 900px) {
   .ex-btn-nav {
     display: none !important;
+  }
+  .btn-side-nav{
+    display: inline !important;
+  }
+  .question-box{
+    outline: none;
+    width: 100% !important;
+    padding: 5px;
+    margin: 0 !important;
+    margin-top: 20% !important;
+  }
+  .question-box p:first-child{
+    font-size: 1.7rem !important;
+  }
+  #quest{
+    border-bottom: 1px solid white;
+    font-size: 1.2rem !important;
+  }
+  .question-box > div > button{
+    font-size: 1.2rem !important;
+    columns: 1 !important;
+    padding: 0.2rem 0;
+  }
+  #loading{
+    max-width: 40vw !important;
+  }
+  .corect-note{
+    width: 50% !important;
+  }
+  .corect-note > img:first-child{
+    margin: 0 !important;
+    max-width: 20vw !important;
+  }
+  .corect-note > img:nth-child(n+2){
+    margin: 0 !important;
+    max-width: 15vw !important;
+  }
+}
+
+@media (min-width:600px) and (max-width: 899px){
+  .corect-note > img:first-child{
+    margin: 0 !important;
+    max-width: 15vw !important;
+  }
+  .corect-note > img:nth-child(n+2){
+    margin: 0 !important;
+    max-width: 10vw !important;
+  }
+  .question-box{
+    margin: 0 !important;
+    margin-top: 15% !important;
+    margin-bottom: 5% !important;
+  }
+  #loading{
+    max-width: 30vw !important;
   }
 }
