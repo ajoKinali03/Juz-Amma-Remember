@@ -17,111 +17,84 @@
     <!-- Jika anda ingin jujur jangan ganti display menjadi inline :( -->
     <p id="inisiator" style="display: none"></p>
     <p id="indikator" style="display: none"></p>
-    <header class="row w-100 mt-2 px-4">
-      <div class="row">
-        <h1 class="col-3 fs-1" style="display: block">Mahapa</h1>
-        <div class="col d-flex justify-content-end gap-3">
-          <button
-            type="button"
-            name="score"
-            id="btn-score"
-            class="btn btn-custom col-2 justify-content-end fs-3 glass"
-            data-bs-toggle="modal"
-            data-bs-target="#score"
-          >
-            Score
-          </button>
-          <div
-            id="score"
-            class="modal fade"
-            data-bs-backdrop="static"
-            data-bs-keyboard="false"
-            tabindex="-1"
-            aria-labelledby="score"
-            aria-hidden="true"
-          >
-            <div class="modal-dialog">
-              <div class="modal-content glass text-white">
-                <div class="modal-header">
-                  <p class="fs-3 m-0 p-0">Score</p>
-                  <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                    style="background-color: white"
-                  ></button>
+    <header class="row w-100 mt-2">
+      <!-- modal surah -->
+      <div
+        id="score"
+        class="modal fade"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="score"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content glass text-white">
+            <div class="modal-header">
+              <p class="fs-3 m-0 p-0">Score</p>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+                style="background-color: white"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="chart row justify-content-center">
+                <div class="donut-chart col-1" style="--value: 0">
+                  <div class="center-text row justify-content-center p-0 m-0">
+                    <img
+                      src="./img/kiing.png"
+                      class="king w-100"
+                      alt="https://pixie.haus/"
+                      style="display: none"
+                    />
+                    <img
+                      src="./img/pemula.png"
+                      class="pemula w-75"
+                      alt="https://pixie.haus/"
+                      style="display: none"
+                    />
+                    <img
+                      src="./img/sigma.png"
+                      class="sigma w-75"
+                      alt="https://pixie.haus/"
+                      style="display: none"
+                    />
+                    <img
+                      src="./img/pendatang.png"
+                      class="pendatang w-75"
+                      alt="https://www.pngwing.com/en/free-png-ztxqv"
+                      style="display: none"
+                    />
+                  </div>
                 </div>
-                <div class="modal-body">
-                  <div class="chart row">
-                    <div class="donut-chart col-1" style="--value: 0">
-                      <div
-                        class="center-text row justify-content-center p-0 m-0"
-                      >
-                        <img
-                          src="./img/kiing.png"
-                          class="king w-100"
-                          alt="https://pixie.haus/"
-                          style="display: none;"
-                        />
-                        <img
-                          src="./img/pemula.png"
-                          class="pemula w-75"
-                          alt="https://pixie.haus/"
-                          style="display: none;"
-                        />
-                        <img
-                          src="./img/sigma.png"
-                          class="sigma w-75"
-                          alt="https://pixie.haus/"
-                          style="display: none;"
-                        />
-                        <img
-                          src="./img/pendatang.png"
-                          class="pendatang w-75"
-                          alt="https://www.pngwing.com/en/free-png-ztxqv"
-                          style="display: none;"
-                        />
-                      </div>
-                    </div>
-                    <div class="teks-chart col text-center p-0 m-0">
-                      <p class="fs-3">Total Jawaban Kamu</p>
-                      <p class="total-jawab fs-4"></p>
-                      <div class="total-persentase row p-0 m-0">
-                        <p class="benar col fs-5">10</p>
-                        <p class="salah col fs-5">10</p>
-                      </div>
-                      <p
-                        class="achief fs-3"
-                        style="outline: 1px solid white"
-                      ></p>
-                    </div>
+                <div class="teks-chart col text-center p-0 m-0" style="min-width: max-content;">
+                  <p class="fs-3">Total Jawaban Kamu</p>
+                  <p class="total-jawab fs-4"></p>
+                  <div class="total-persentase row p-0 m-0">
+                    <p class="benar col fs-5">10</p>
+                    <p class="salah col fs-5">10</p>
                   </div>
-                  <div class="labels w-100 col justify-content-center">
-                    <div class="label col">
-                      <div class="color-box color2 ms-2"></div>
-                      <p class="label2 p-0 m-0"></p>
-                    </div>
-                    <div class="label col">
-                      <div class="color-box color1 ms-2"></div>
-                      <p class="label1 p-0 m-0"></p>
-                    </div>
-                  </div>
+                  <p class="achief fs-3" style="outline: 1px solid white"></p>
+                </div>
+              </div>
+              <div class="labels w-100 col justify-content-center">
+                <div class="label col">
+                  <div class="color-box color2 ms-2"></div>
+                  <p class="label2 p-0 m-0"></p>
+                </div>
+                <div class="label col">
+                  <div class="color-box color1 ms-2"></div>
+                  <p class="label1 p-0 m-0"></p>
                 </div>
               </div>
             </div>
           </div>
-          <button
-            type="button"
-            id="btn-surah"
-            class="btn btn-custom col-2 justify-content-end fs-3 glass"
-            data-bs-toggle="modal"
-            data-bs-target="#staticBackdrop"
-          >
-            Surah
-          </button>
         </div>
       </div>
+      <!-- modal surah -->
       <div
         id="staticBackdrop"
         class="modal fade"
@@ -157,6 +130,146 @@
             </div>
           </div>
         </div>
+      </div>
+      <nav class="navbar" data-bs-theme="data-bs-theme">
+        <div class="container-fluid h-100">
+          <span class="navbar-brand h1 text-white p-0 m-0 fs-1">Mahapa</span>
+          <div
+            class="ex-btn-nav col d-flex justify-content-end gap-3 mx-3 h-75"
+          >
+            <button
+              type="button"
+              name="score"
+              id="btn-score"
+              class="btn btn-custom col-2 justify-content-end align-items-center fs-3 glass"
+              data-bs-toggle="modal"
+              data-bs-target="#score"
+            >
+              <p class="col align-content-center p-0 h-100">Score</p>
+            </button>
+            <button
+              type="button"
+              id="btn-surah"
+              class="btn btn-custom col-2 justify-content-end fs-3 glass"
+              data-bs-toggle="modal"
+              data-bs-target="#staticBackdrop"
+            >
+              <p class="col align-content-center p-0 h-100">Surah</p>
+            </button>
+          </div>
+          <button
+            type="button"
+            class="btn-nav-costum navbar-toggler"
+            style="background-color: rgb(211, 234, 255)"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasNavbar"
+            aria-controls="offcanvasNavbar"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div
+            class="offcanvas offcanvas-end costum-bg-nav text-white"
+            tabindex="-1"
+            id="offcanvasNavbar"
+            aria-labelledby="offcanvasNavbarLabel"
+          >
+            <div
+              class="offcanvas-header"
+              style="border-bottom: 1px solid white"
+            >
+              <h5 class="offcanvas-title h1 fs-3" id="offcanvasNavbarLabel">
+                Navigasi
+              </h5>
+              <button
+                type="button"
+                class="btn-close bg-white"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                <li class="nav-item">
+                  <a
+                    href="#"
+                    style="text-decoration: none"
+                    role="button"
+                    name="score"
+                    id="btn-score-side-nav"
+                    class="nav-link fs-5 text-white"
+                    data-bs-toggle="modal"
+                    data-bs-target="#score"
+                    >Score</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    style="text-decoration: none"
+                    href="#"
+                    role="button"
+                    id="btn-surah-side-nav"
+                    class="nav-link fs-5 text-white"
+                    data-bs-toggle="modal"
+                    data-bs-target="#staticBackdrop"
+                  >
+                    Surah
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a
+                    href="#"
+                    class="nav-link active text-white fs-5"
+                    aria-current="page"
+                    onclick="alert('halaman belum dibuat')"
+                    >Tutorial</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    href="#"
+                    class="nav-link active text-white fs-5"
+                    aria-current="page"
+                    onclick="alert('halaman belum dibuat')"
+                    >Privasi Data Anda</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    href="#"
+                    class="nav-link dropdown-toggle text-white fs-5"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                    >Social Media Developer</a
+                  >
+                  <ul class="dropdown-menu dropdown-menu-light">
+                    <li class="p-2">
+                      <a
+                        class="dropdown-item fs-5 p-0"
+                        href="#"
+                        style="color: #0f766e; border-bottom: 1px solid #0f766e"
+                        >Instagram</a
+                      >
+                    </li>
+                    <li class="p-2">
+                      <a
+                        class="dropdown-item fs-5 p-0"
+                        href="#"
+                        style="color: #0f766e; border-bottom: 1px solid #0f766e"
+                        >GitHub</a
+                      >
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div class="row" style="display: none">
+        <h1 class="col-3 fs-1" style="display: block">Mahapa</h1>
       </div>
     </header>
     <container

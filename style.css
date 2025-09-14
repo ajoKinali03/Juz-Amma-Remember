@@ -4,7 +4,7 @@
   padding: 0;
   font-family: "Amiri", "Scheherazade New", "Lateef", serif;
   /* font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; */
-  /* outline: 1px solid red; */
+  outline: 1px solid red;
 }
 
 body {
@@ -47,7 +47,6 @@ body {
 
 .btn-custom {
   /* background-color: #50bb52; */
-  border: none;
   color: white;
   background-color: rgba(255, 255, 255, 0.2);
   /* padding: 8px 20px; */
@@ -101,6 +100,14 @@ h1 {
   /* From https://css.glass */
   background: rgba(255, 255, 255, 0.1);
   border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4.8px);
+  -webkit-backdrop-filter: blur(4.8px);
+  border: 1px solid rgba(255, 255, 255, 0.53);
+}
+
+.costum-bg-nav {
+  background: rgba(255, 255, 255, 0.1);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(4.8px);
   -webkit-backdrop-filter: blur(4.8px);
@@ -207,23 +214,8 @@ h1 {
 }
 
 /* Media query untuk layar kecil (smartphone) */
-@media (max-width: 600px) {
-  .container {
-    flex-direction: column;
-  }
-  .item {
-    flex: 1 1 100%;
-  }
-  body {
-    font-size: 14px;
-  }
-}
-/* Media query untuk tablet */
-@media (min-width: 601px) and (max-width: 900px) {
-  .item {
-    flex: 1 1 45%;
-  }
-  body {
-    font-size: 15px;
+@media only screen and (max-width: 900px) {
+  .ex-btn-nav {
+    display: none !important;
   }
 }

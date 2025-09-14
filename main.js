@@ -89,7 +89,7 @@ function tipeQuest(quest) {
 
 //menampilkan data surah
 loadData("./data/surah.json").then((surah) => {
-  let btnSurah = document.getElementById("btn-surah");
+  let btnSurah = document.querySelectorAll("#btn-surah, #btn-surah-side-nav");
   let selectSurah = document.getElementById("select-surah");
 
   for (let i = 77; i <= 113; i++) {
@@ -99,8 +99,10 @@ loadData("./data/surah.json").then((surah) => {
     selectSurah.appendChild(option);
   }
 
-  btnSurah.addEventListener("click", () => {
-    selectSurah.style.display = "block";
+  btnSurah.forEach((elId) => {
+    elId.addEventListener("click", () => {
+      selectSurah.style.display = "block";
+    });
   });
 
   selectSurah.addEventListener("click", () => {
@@ -378,20 +380,20 @@ function resetCheckBox() {
 }
 
 // ...existing code...
-document
-  // .querySelectorAll('#list-jawaban input[type="checkbox"]')
-  // .forEach((checkbox) => {
-  //   checkbox.addEventListener("change", function () {
-  //     if (this.checked) {
-  //       jwbBtn.disabled = false;
-  //       document
-  //         .querySelectorAll('#list-jawaban input[type="checkbox"]')
-  //         .forEach((cb) => {
-  //           if (cb !== this) cb.checked = false;
-  //         });
-  //     }
-  //   });
-  // });
+// document;
+// .querySelectorAll('#list-jawaban input[type="checkbox"]')
+// .forEach((checkbox) => {
+//   checkbox.addEventListener("change", function () {
+//     if (this.checked) {
+//       jwbBtn.disabled = false;
+//       document
+//         .querySelectorAll('#list-jawaban input[type="checkbox"]')
+//         .forEach((cb) => {
+//           if (cb !== this) cb.checked = false;
+//         });
+//     }
+//   });
+// });
 
 // buatkan code js untuk merubah warna teks pilihan jawaban ketika checkbox di ceklist
 document
@@ -407,10 +409,10 @@ document
               cb.checked = false;
               let otherBg = cb.parentElement;
               otherBg.style.backgroundColor = "rgba(255, 255, 255, 0.29)";
-            }else{
+            } else {
               let bg = cb.parentElement;
               bg.style.backgroundColor = "white";
-            };
+            }
           });
       }
     });
@@ -444,66 +446,69 @@ function saveScore(isCorrect) {
 }
 
 // Event listener tombol score
-document.getElementById("btn-score").addEventListener("click", () => {
-  let score = JSON.parse(localStorage.getItem("score")) || {
-    benar: 0,
-    salah: 0,
-    total: 0,
-  };
-  let persenBenar = score.total
-    ? ((score.benar / score.total) * 100).toFixed(2)
-    : 0;
-  let persenSalah = score.total
-    ? ((score.salah / score.total) * 100).toFixed(2)
-    : 0;
+document.querySelectorAll("#btn-score, #btn-score-side-nav").forEach((elId) => {
+  elId.addEventListener("click", () => {
+    let score = JSON.parse(localStorage.getItem("score")) || {
+      benar: 0,
+      salah: 0,
+      total: 0,
+    };
+    let persenBenar = score.total
+      ? ((score.benar / score.total) * 100).toFixed(2)
+      : 0;
+    let persenSalah = score.total
+      ? ((score.salah / score.total) * 100).toFixed(2)
+      : 0;
 
-  persenBenar = parseInt(persenBenar);
-  persenSalah = parseInt(persenSalah);
-  document
-    .getElementsByClassName("donut-chart")[0]
-    .style.setProperty("--value", `${persenBenar ? persenBenar : 100}`);
-  // document.getElementsByClassName(
-  //   "center-text"
-  // )[0].innerHTML = `${persenBenar}%`;
-  document.getElementsByClassName("label1")[0].innerHTML = `${persenBenar}%`;
-  document.getElementsByClassName("label2")[0].innerHTML = `${persenSalah}%`;
-  document.getElementsByClassName(
-    "total-jawab"
-  )[0].innerHTML = `${score.total}`;
-  document.getElementsByClassName(
-    "benar"
-  )[0].innerHTML = `betul: ${score.benar}`;
-  document.getElementsByClassName(
-    "salah"
-  )[0].innerHTML = `salah: ${score.salah}`;
-  achief(persenBenar);
+    persenBenar = parseInt(persenBenar);
+    persenSalah = parseInt(persenSalah);
+
+    document
+      .getElementsByClassName("donut-chart")[0]
+      .style.setProperty("--value", `${persenBenar ? persenBenar : 100}`);
+    // document.getElementsByClassName(
+    //   "center-text"
+    // )[0].innerHTML = `${persenBenar}%`;
+    document.getElementsByClassName("label1")[0].innerHTML = `${persenBenar}%`;
+    document.getElementsByClassName("label2")[0].innerHTML = `${persenSalah}%`;
+    document.getElementsByClassName(
+      "total-jawab"
+    )[0].innerHTML = `${score.total}`;
+    document.getElementsByClassName(
+      "benar"
+    )[0].innerHTML = `betul: ${score.benar}`;
+    document.getElementsByClassName(
+      "salah"
+    )[0].innerHTML = `salah: ${score.salah}`;
+    achief(persenBenar);
+  });
 });
 
 function achief(value) {
   let achief = document.getElementsByClassName("achief")[0];
   if (value == 0) {
-    achief.innerHTML = "Pendatang";
-    noneDispImg("pendatang")
+    achief.innerHTML = "Pendatang🤗";
+    noneDispImg("pendatang");
   } else if (value >= 80) {
     achief.innerHTML = "Kelass Kiing~ 😎";
-    noneDispImg("king")
+    noneDispImg("king");
   } else if (value <= 40) {
     achief.innerHTML = "Pemula😏";
-    noneDispImg("pemula")
+    noneDispImg("pemula");
   } else {
-    achief.innerHTML = "Sigma🤫";
-    noneDispImg("sigma")
+    achief.innerHTML = "Sigma🗿";
+    noneDispImg("sigma");
   }
 }
 
-function noneDispImg(name){
+function noneDispImg(name) {
   let imgEl = document.getElementsByClassName("center-text")[0].children;
-  for(el of imgEl){
+  for (el of imgEl) {
     let imgClassName = el.className.split(" ")[0];
-    if(imgClassName == name){
+    if (imgClassName == name) {
       el.style.display = "block";
-    }else{
+    } else {
       el.style.display = "none";
-    };
-  };
-};
+    }
+  }
+}
