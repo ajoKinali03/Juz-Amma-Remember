@@ -40,7 +40,7 @@ body {
 }
 #select-surah option:checked {
   background-color: rgb(255, 255, 255);
-  color: #0f766e;`
+  color: #0f766e;
   border: none;
   border-bottom: 1px solid rgb(145, 145, 145);
 }
